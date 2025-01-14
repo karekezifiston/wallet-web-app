@@ -53,7 +53,7 @@ const TransactionReport = () => {
       </div>
       <button onClick={handleGenerateReport}>Generate Report</button>
 
-      <div>
+      <div className="categ">
         <label>Category: </label>
         <select
           value={filterCategory}
@@ -67,7 +67,7 @@ const TransactionReport = () => {
       </div>
 
       {filterCategory && (
-        <div>
+        <div className="categ">
           <label>Subcategory: </label>
           <select
             value={filterSubcategory}
