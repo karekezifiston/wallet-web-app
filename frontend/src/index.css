@@ -126,3 +126,57 @@ form input{
   width:15%;
   border-radius:20px;
 }
+@media (min-width:0px) and (max-width:608px){
+  .budget h2{
+    font-size:16px;
+  }
+  .budget input{
+    padding:5px;
+  }
+  .budget button{
+    padding:7px;
+    font-size:11px;
+  }
+  .budget h3{
+    font-size:15px;
+  }
+  .list-tra h3{
+    font-size:14px;
+  }
+  form select {
+    font-size:14px;
+  }
+  .btn{
+    font-size:14px;
+  }
+  .report h2{
+    font-size:15px;
+  }
+  label{
+    font-size:13px;
+  }
+  .report div input{
+    padding:5px;
+  }
+  .report button{
+    font-size:13px;
+    padding:7px;
+    padding-left:8px;
+    padding-right:20px;
+  }
+  .report h3{
+    font-size:16px;
+  }
+  .report p{
+    font-size:15px;
+  }
+  .account-summary h3{
+    font-size:16px;
+  }
+  .account-summary p{
+    font-size:14px;
+  }
+  .account-summary p span{
+    font-size:15px;
+  }
+}

@@ -51,7 +51,7 @@ const TransactionReport = () => {
           onChange={(e) => setEndDate(e.target.value)}
         />
       </div>
-      <button onClick={handleGenerateReport}>Generate Report</button>
+      <button onClick={handleGenerateReport}>Generate</button>
 
       <div className="categ">
         <label>Category: </label>
