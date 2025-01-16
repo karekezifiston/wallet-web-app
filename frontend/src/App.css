@@ -12,6 +12,7 @@
   font-family:Arial;
   gap:10px;
   margin-left:2rem;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 @media (min-width:0px) and (max-width:608px){
   .App h1 img{
