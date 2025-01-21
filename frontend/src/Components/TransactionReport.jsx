@@ -1,13 +1,28 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { WalletContext } from "../context/WalletContext";
 
 const TransactionReport = () => {
   const { transactions, categories, subcategories } = useContext(WalletContext);
-  const [filterCategory, setFilterCategory] = useState("");
-  const [filterSubcategory, setFilterSubcategory] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [filterCategory, setFilterCategory] = useState(() => {
+    return localStorage.getItem("filterCategory") || "";
+  });
+  const [filterSubcategory, setFilterSubcategory] = useState(() => {
+    return localStorage.getItem("filterSubcategory") || "";
+  });
+  const [startDate, setStartDate] = useState(() => {
+    return localStorage.getItem("startDate") || "";
+  });
+  const [endDate, setEndDate] = useState(() => {
+    return localStorage.getItem("endDate") || "";
+  });
   const [filteredTransactions, setFilteredTransactions] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("filterCategory", filterCategory);
+    localStorage.setItem("filterSubcategory", filterSubcategory);
+    localStorage.setItem("startDate", startDate);
+    localStorage.setItem("endDate", endDate);
+  }, [filterCategory, filterSubcategory, startDate, endDate]);
 
   const handleGenerateReport = () => {
     if (!startDate || !endDate) {
@@ -86,7 +101,7 @@ const TransactionReport = () => {
         <ul>
           {filteredTransactions.map((transaction) => (
             <li key={transaction.id}>
-              {transaction.date} - {transaction.account} - {transaction.type} - $
+              {transaction.date} - {transaction.account} - {transaction.type} - $ 
               {transaction.amount}
             </li>
           ))}

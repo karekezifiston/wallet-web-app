@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { WalletContext } from "../context/WalletContext";
 import set from "../assets/set.png"
 
@@ -6,18 +6,28 @@ const SetBudget = () => {
   const { budget, setBudget, isBudgetExceeded } = useContext(WalletContext);
   const [newBudget, setNewBudget] = useState("");
 
+  useEffect(() => {
+    // Load budget from localStorage when component mounts
+    const savedBudget = localStorage.getItem("budget");
+    if (savedBudget) {
+      setNewBudget(savedBudget);
+      setBudget(parseFloat(savedBudget));
+    }
+  }, []);
+
   const handleSetBudget = () => {
     if (newBudget <= 0) {
       alert("Please enter a valid budget.");
       return;
     }
     setBudget(parseFloat(newBudget));
+    localStorage.setItem("budget", newBudget); // Persist budget to localStorage
     setNewBudget("");
   };
 
   return (
     <div className="budget">
-      <h2><img src={set}width={20} alt="" />Set Your Budget</h2>
+      <h2><img src={set} width={20} alt="" />Set Your Budget</h2>
       <input
         type="number"
         placeholder="Enter your budget"

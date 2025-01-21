@@ -5,8 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 export const WalletContext = createContext();
 
 export const WalletProvider = ({ children }) => {
-  const [transactions, setTransactions] = useState([]);
-  const [budget, setBudget] = useState(0);
+  const [transactions, setTransactions] = useState(() => {
+    const savedTransactions = JSON.parse(localStorage.getItem("transactions"));
+    return savedTransactions ? savedTransactions : [];
+  });
+  const [budget, setBudget] = useState(() => {
+    const savedBudget = localStorage.getItem("budget");
+    return savedBudget ? parseFloat(savedBudget) : 0;
+  });
   const [categories, setCategories] = useState(["Food", "Transportation", "Utilities"]);
   const [subcategories, setSubcategories] = useState({
     Food: ["Groceries", "Dining Out"],
@@ -15,7 +21,11 @@ export const WalletProvider = ({ children }) => {
   });
 
   const addTransaction = (transaction) => {
-    setTransactions((prev) => [...prev, transaction]);
+    setTransactions((prev) => {
+      const updatedTransactions = [...prev, transaction];
+      localStorage.setItem("transactions", JSON.stringify(updatedTransactions)); // Persist transactions to localStorage
+      return updatedTransactions;
+    });
   };
 
   const linkTransactionToCategory = (transaction, category, subcategory) => {
@@ -35,10 +45,13 @@ export const WalletProvider = ({ children }) => {
   const isBudgetExceeded = totalExpenses > budget;
 
   useEffect(() => {
+    localStorage.setItem("budget", budget.toString()); // Persist budget to localStorage
+    localStorage.setItem("categories", JSON.stringify(categories)); // Persist categories to localStorage
+    localStorage.setItem("subcategories", JSON.stringify(subcategories)); // Persist subcategories to localStorage
     if (isBudgetExceeded) {
       toast.error("Warning: You have exceeded your budget!");
     }
-  }, [isBudgetExceeded]);
+  }, [budget, isBudgetExceeded, categories, subcategories]);
 
   return (
     <WalletContext.Provider
