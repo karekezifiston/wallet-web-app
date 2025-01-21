@@ -23,7 +23,7 @@ export const WalletProvider = ({ children }) => {
   const addTransaction = (transaction) => {
     setTransactions((prev) => {
       const updatedTransactions = [...prev, transaction];
-      localStorage.setItem("transactions", JSON.stringify(updatedTransactions)); // Persist transactions to localStorage
+      localStorage.setItem("transactions", JSON.stringify(updatedTransactions));
       return updatedTransactions;
     });
   };
@@ -45,9 +45,9 @@ export const WalletProvider = ({ children }) => {
   const isBudgetExceeded = totalExpenses > budget;
 
   useEffect(() => {
-    localStorage.setItem("budget", budget.toString()); // Persist budget to localStorage
-    localStorage.setItem("categories", JSON.stringify(categories)); // Persist categories to localStorage
-    localStorage.setItem("subcategories", JSON.stringify(subcategories)); // Persist subcategories to localStorage
+    localStorage.setItem("budget", budget.toString());
+    localStorage.setItem("categories", JSON.stringify(categories)); 
+    localStorage.setItem("subcategories", JSON.stringify(subcategories)); 
     if (isBudgetExceeded) {
       toast.error("Warning: You have exceeded your budget!");
     }

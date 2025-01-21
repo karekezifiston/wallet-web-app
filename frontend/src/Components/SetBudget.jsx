@@ -7,7 +7,6 @@ const SetBudget = () => {
   const [newBudget, setNewBudget] = useState("");
 
   useEffect(() => {
-    // Load budget from localStorage when component mounts
     const savedBudget = localStorage.getItem("budget");
     if (savedBudget) {
       setNewBudget(savedBudget);
@@ -21,7 +20,7 @@ const SetBudget = () => {
       return;
     }
     setBudget(parseFloat(newBudget));
-    localStorage.setItem("budget", newBudget); // Persist budget to localStorage
+    localStorage.setItem("budget", newBudget); 
     setNewBudget("");
   };
 
