@@ -36,26 +36,6 @@ export const WalletProvider = ({ children }) => {
       )
     );
   };
-
-  // useEffect(() => {
-  //   fetch('/api/transactions')
-  //     .then(res => res.json())
-  //     .then(data => setTransactions(data));
-
-  //   fetch('/api/budget')
-  //     .then(res => res.json())
-  //     .then(data => setBudget(data.budget));
-
-
-  //   fetch('/api/categories')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setCategories(data.categories);
-  //       setSubcategories(data.subcategories);
-  //     });
-
-  // }, []);
-
   const totalExpenses = transactions
     .filter((transaction) => transaction.type === "expense")
     .reduce((sum, transaction) => sum + parseFloat(transaction.amount), 0);
