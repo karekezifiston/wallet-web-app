@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import axios from 'axios';
 export const WalletContext = createContext();
 
 export const WalletProvider = ({ children }) => {
@@ -37,6 +37,25 @@ export const WalletProvider = ({ children }) => {
       )
     );
   };
+
+  // useEffect(() => {
+  //   fetch('/api/transactions')
+  //     .then(res => res.json())
+  //     .then(data => setTransactions(data));
+
+  //   fetch('/api/budget')
+  //     .then(res => res.json())
+  //     .then(data => setBudget(data.budget));
+
+
+  //   fetch('/api/categories')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setCategories(data.categories);
+  //       setSubcategories(data.subcategories);
+  //     });
+
+  // }, []);
 
   const totalExpenses = transactions
     .filter((transaction) => transaction.type === "expense")
